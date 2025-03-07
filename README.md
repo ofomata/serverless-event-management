@@ -80,11 +80,48 @@ project-folder/
 2. Subscribe users to receive event updates.
 3. Create an **SQS queue** for processing event-related messages.
 
-### **7. Enabling Monitoring (CloudWatch & CloudTrail)**
+---
 
-1. Enable **CloudWatch Logs** for API Gateway & Lambda.
-2. Set up **CloudTrail** to track AWS API actions.
-3. Create **Alarms** to monitor system health.
+## Proof of Functionality
+
+### API Gateway Setup
+![API Gateway](screenshots/apigateway.png)
+
+### Invoke URL
+![Invoke URL](screenshots/invokeURL.png)
+
+### Lambda Execution Logs
+![Lambda Logs](screenshots/logdetailsoftheregisteredevent.png)
+
+### Lambda Execution Logs for SQS Queue
+![Lambda SQS Queue Logs](screenshots/cloudwatchforSQSevent.png)
+
+### Lambda Triggers
+![Trigger](screenshots/snstrigger.png)
+
+### Lambda Triggers
+![Trigger](screenshots/apitrigger.png)
+
+### RDS Database Query
+![RDS Query](screenshots/rdsdataviewfromcloudshell.png)
+
+### DynamoDB Table Before Event
+![DynamoDB Table](screenshots/dynamodbbeforeuserregistrations.png)
+
+### DynamoDB Table
+![DynamoDB Table](screenshots/dynamodbupdatedwithregisteredusers.png)
+
+### Admin Panel Before Registration
+![Admin Panel](screenshots/adminpanelbefore.png)
+
+### Admin Panel After Registration
+![Admin Panel](screenshots/adminpanelafter.png)
+
+### Frontend (S3 Hosted)
+![S3 Website](screenshots/frontendeventregisterationsite.png)
+
+### Frontend After User Registration (S3 Hosted)
+![S3 Website](screenshots/frontendsiteaftereventregistration.png)
 
 ---
 
@@ -93,7 +130,7 @@ project-folder/
 - The **frontend (S3)** interacts with **API Gateway**, which triggers **Lambda** functions.
 - **Lambda** processes event registrations, storing user data in **DynamoDB** and event details in **RDS**.
 - **SQS** queues event processing tasks, while **SNS** sends notifications.
-- **CloudWatch & CloudTrail** provide monitoring and logging.
+- **CloudWatch** provide monitoring and logging.
 - The **Admin Panel (PHP on EC2)** provides a web interface for event management.
 
 ---
@@ -104,6 +141,9 @@ project-folder/
 🔹 **GraphQL API:** Upgrade from REST to GraphQL for efficient data fetching.
 🔹 **Auto-scaling database:** Implement Aurora Serverless instead of standard RDS.
 🔹 **Caching:** Use AWS ElastiCache (Redis) to improve performance.
+🔹 **CloudWatch Logs** for API Gateway & Lambda.
+🔹 **CloudTrail** to track AWS API actions.
+🔹 **Alarms** to monitor system health.
 
 ---
 
