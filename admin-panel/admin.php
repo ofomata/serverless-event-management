@@ -1,7 +1,7 @@
 <?php
 $host = "eventdatabase.cxa6gecsas3w.us-east-1.rds.amazonaws.com";
 $username = "admin";
-$password = "31032002Ab";
+$password = "**********";
 $dbname = "test";
 
 // Create connection
