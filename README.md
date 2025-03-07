@@ -49,40 +49,20 @@ project-folder/
 3. Set the **bucket policy** to allow public read access.
 4. Get the website URL from the S3 console.
 
+
+### Frontend (S3 Hosted)
+![S3 Website](screenshots/frontendeventregisterationsite.png)
+
+### Frontend After User Registration (S3 Hosted)
+![S3 Website](screenshots/frontendsiteaftereventregistration.png)
+
+
 ### **2. Setting Up API Gateway**
 
 1. Navigate to **API Gateway** in the AWS Console.
 2. Create a new **REST API** and import the Swagger file from `api-gateway/`.
 3. Deploy the API and note the generated URL.
 
-### **3. Deploying Lambda Functions**
-
-1. Zip the `lambdas/` folder.
-2. Upload the ZIP files in **AWS Lambda**.
-3. Attach necessary **IAM roles** for database access.
-
-### **4. Configuring DynamoDB & RDS**
-
-1. Navigate to **DynamoDB** and create a table for user registrations.
-2. Navigate to **RDS** and run the SQL script from `database/`.
-3. Note down the database endpoint.
-
-### **5. Setting Up Admin Panel (PHP on EC2)**
-
-1. Launch an **EC2 instance** with Apache & PHP installed.
-2. Copy the `admin-panel/` files to `/var/www/html/`.
-3. Update the database credentials in `admin.php`.
-4. Restart Apache: `sudo systemctl restart httpd`.
-
-### **6. Configuring Notifications (SNS & SQS)**
-
-1. Create an **SNS topic** for event notifications.
-2. Subscribe users to receive event updates.
-3. Create an **SQS queue** for processing event-related messages.
-
----
-
-## Proof of Functionality
 
 ### API Gateway Setup
 ![API Gateway](screenshots/apigateway.png)
@@ -90,17 +70,34 @@ project-folder/
 ### Invoke URL
 ![Invoke URL](screenshots/invokeURL.png)
 
-### Lambda Execution Logs
-![Lambda Logs](screenshots/logdetailsoftheregisteredevent.png)
 
-### Lambda Execution Logs for SQS Queue
-![Lambda SQS Queue Logs](screenshots/cloudwatchforSQSevent.png)
+### **3. Deploying Lambda Functions**
+
+1. Zip the `lambdas/` folder.
+2. Upload the ZIP files in **AWS Lambda**.
+3. Attach necessary **IAM roles** for database access.
+
 
 ### Lambda Triggers
 ![Trigger](screenshots/snstrigger.png)
 
 ### Lambda Triggers
 ![Trigger](screenshots/apitrigger.png)
+
+### Lambda Execution Logs
+![Lambda Logs](screenshots/logdetailsoftheregisteredevent.png)
+
+### Lambda Execution Logs for SQS Queue
+![Lambda SQS Queue Logs](screenshots/cloudwatchforSQSevent.png)
+
+
+
+### **4. Configuring DynamoDB & RDS**
+
+1. Navigate to **DynamoDB** and create a table for user registrations.
+2. Navigate to **RDS** and run the SQL script from `database/`.
+3. Note down the database endpoint.
+
 
 ### RDS Database Query
 ![RDS Query](screenshots/rdsdataviewfromcloudshell.png)
@@ -111,19 +108,39 @@ project-folder/
 ### DynamoDB Table
 ![DynamoDB Table](screenshots/dynamodbupdatedwithregisteredusers.png)
 
+
+
+### **5. Setting Up Admin Panel (PHP on EC2)**
+
+1. Launch an **EC2 instance** with Apache & PHP installed.
+2. Copy the `admin-panel/` files to `/var/www/html/`.
+3. Update the database credentials in `admin.php`.
+4. Restart Apache: `sudo systemctl restart httpd`.
+
+
 ### Admin Panel Before Registration
 ![Admin Panel](screenshots/adminpanelbefore.png)
 
 ### Admin Panel After Registration
 ![Admin Panel](screenshots/adminpanelafter.png)
 
-### Frontend (S3 Hosted)
-![S3 Website](screenshots/frontendeventregisterationsite.png)
+### Lambda Execution Logs
+![Lambda Logs](screenshots/logdetailsoftheregisteredevent.png)
 
-### Frontend After User Registration (S3 Hosted)
-![S3 Website](screenshots/frontendsiteaftereventregistration.png)
+
+### **6. Configuring Notifications (SNS & SQS)**
+
+1. Create an **SNS topic** for event notifications.
+2. Subscribe users to receive event updates.
+3. Create an **SQS queue** for processing event-related messages.
+
+
+### Lambda Execution Logs for SQS Queue
+![Lambda SQS Queue Logs](screenshots/cloudwatchforSQSevent.png)
+
 
 ---
+
 
 ## **How Everything Connects**
 
@@ -132,6 +149,12 @@ project-folder/
 - **SQS** queues event processing tasks, while **SNS** sends notifications.
 - **CloudWatch** provide monitoring and logging.
 - The **Admin Panel (PHP on EC2)** provides a web interface for event management.
+- **IAM** provides access and permission to the needed systems.
+
+
+### Project Architecture
+![Architecture Diagram Of Application](screenshots/ArchitecturalDiagram.png)
+
 
 ---
 
@@ -141,7 +164,7 @@ project-folder/
 🔹 **GraphQL API:** Upgrade from REST to GraphQL for efficient data fetching.
 🔹 **Auto-scaling database:** Implement Aurora Serverless instead of standard RDS.
 🔹 **Caching:** Use AWS ElastiCache (Redis) to improve performance.
-🔹 **CloudWatch Logs** for API Gateway & Lambda.
+🔹 **CloudWatch Logs** for API Gateway.
 🔹 **CloudTrail** to track AWS API actions.
 🔹 **Alarms** to monitor system health.
 
